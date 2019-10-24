@@ -14,6 +14,7 @@ def hello():
     return "Hello World!"
 
 if __name__ == "__main__":
+    print('____ adding metrics handler _____')
     app_dispatch = DispatcherMiddleware(application, {
         '/metrics': make_wsgi_app()
     })
