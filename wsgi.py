@@ -8,10 +8,12 @@ from prometheus_client import Counter
 c = Counter('__test_counter', 'Description of counter')
 c.inc()
 
+print('____ adding metric _____')
+
 @application.route("/")
 def hello():
     c.inc()
-    return "Hello World!"
+    return "Hello World 2!"
 
 if __name__ == "__main__":
     print('____ adding metrics handler _____')
