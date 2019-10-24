@@ -15,9 +15,8 @@ def hello():
     c.inc()
     return "Hello World 2!"
 
-if __name__ == "__main__":
-    print('____ adding metrics handler _____')
-    app_dispatch = DispatcherMiddleware(application, {
-        '/metrics': make_wsgi_app()
-    })
-    run_simple(hostname="localhost", port=8080, application=app_dispatch)
+print('____ adding metrics handler _____')
+app_dispatch = DispatcherMiddleware(application, {
+    '/metrics': make_wsgi_app()
+})
+run_simple(hostname="localhost", port=8080, application=app_dispatch)
