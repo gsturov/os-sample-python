@@ -1,9 +1,20 @@
 from flask import Flask
+from werkzeug.wsgi import DispatcherMiddleware
+from prometheus_client import make_wsgi_app
+from werkzeug.serving import run_simple
 application = Flask(__name__)
+
+from prometheus_client import Counter
+c = Counter('__test_counter', 'Description of counter')
+c.inc()
 
 @application.route("/")
 def hello():
+    c.inc()
     return "Hello World!"
 
 if __name__ == "__main__":
-    application.run()
+    app_dispatch = DispatcherMiddleware(application, {
+        '/metrics': make_wsgi_app()
+    })
+    run_simple(hostname="localhost", port=8080, application=app_dispatch)
