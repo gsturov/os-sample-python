@@ -19,4 +19,4 @@ print('____ adding metrics handler _____')
 app_dispatch = DispatcherMiddleware(application, {
     '/metrics': make_wsgi_app()
 })
-run_simple(hostname="localhost", port=8080, application=app_dispatch)
+run_simple(hostname="localhost", port=8090, application=app_dispatch)
